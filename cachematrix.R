@@ -3,9 +3,12 @@
 
 ## Write a short comment describing this function
 
+## makeCacheMatrix returns a list which basically contains the original matrix , it's inverse(if computed earlier,NULL otherwise) and functions to retrieve/set the
+## original data(matrix) and it's inverse
+
 makeCacheMatrix <- function(x = matrix()) {
-  inv = NULL
-  get <- function()x
+  inv = NULL                  ##Inverse
+  get <- function()x          
   set <- function(y){
     x<<-y
     inv <<-  NULL
@@ -17,6 +20,8 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## Write a short comment describing this function
+## This function calculates the inverse of the special "matrix"(i.e. a list) created by the abovementioned function , but it first checks if the inverse has already been 
+## calculated and proceeds with calculating the inverse only  if it hasn't else it return the cached value
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
@@ -27,7 +32,7 @@ cacheSolve <- function(x, ...) {
     return(inv)
   }
   mat <- x$get()
-  inv <- solve(mat)
+  inv <- solve(mat , ...)
   x$setinv(inv)
   inv
 }
